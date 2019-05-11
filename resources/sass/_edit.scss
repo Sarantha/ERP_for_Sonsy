@@ -1,0 +1,131 @@
+@function rem($value){
+    @return unqoute(($value/1px)/16+"rem");
+}
+
+$easeTime: 0.25s;
+$margin-top: 56px;
+
+$colors:(
+    "mattBlackLight": "#303337",
+    "mattBlackDark": "#212121",
+    "mattGray": "#878d8d",
+    "mattRed": "#ec6721",
+    "navwhite": "#ffffff"
+);
+
+@each $colorName, $colorValue in $colors{
+    .bg-#{$colorName}{
+        background-color: #{$colorValue};
+    }
+    .text-#{$colorName}{
+        color: #{$colorValue};
+    }
+}
+
+body{
+    //@extend .bg-mattBlackDark;
+    background-color: #f8f9fa;
+    @extend .text-mattGray;
+}
+.wrapper{
+    .avatar {
+        vertical-align: middle;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+    .sidemenu{
+        position: fixed;
+        top:0;
+        bottom:0;
+        left:0;
+        margin: auto auto auto;
+        width:200px;
+        transition:all ease $easeTime;
+        transform: translateX(-100%);
+        z-index:2000;
+        @extend .bg-mattBlackLight; 
+    }
+    .content{
+        width:100%;
+        //margin-top: $margin-top;
+        margin-left: 0px;
+        transition: all ease $easeTime;
+    }   
+    &.active{
+        .sidemenu{
+            transform: translateX(0);
+        }
+    }
+}
+.navnew{
+    margin-left: 120px;
+}
+.navnew.active1{
+    margin-left: 3px;
+}
+
+@media(min-width:992px){
+    .wrapper{
+        .sidemenu{
+            transform: translateX(0);
+        }
+        .content{
+            margin-left: 200px;
+        } 
+        &.active{
+            .sidemenu{
+                width: 80px;
+                .sideLink{
+                    text-align:center;
+                    .icon{
+                        margin-right: 0px;
+                    }
+                    .text{
+                        display:none;
+                    }
+                }
+            }
+            .content{
+                margin-left: 80px;
+            }
+        }
+    }
+}
+@media(max-width:992px){
+    .tog{
+        display: none;
+    }
+}
+
+.sideLink{
+    display:block;
+    white-space: nowrap;
+    .icon{
+        margin-right: 4px;
+        font-size: 30px;
+        vertical-align: middle;
+        height: 32px;
+        width: 32px;   
+        @extend .text-mattGray;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .text{
+        font-size: 14px;
+        @extend .text-mattGray;
+    }
+    &:hover,
+    &.active{
+        @extend .bg-mattBlackDark;
+    }
+
+}
+.router-link-exact-active{
+    @extend .bg-mattBlackDark;
+    .text,.icon{
+        @extend .text-navwhite;
+    }
+    
+  }
