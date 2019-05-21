@@ -15,7 +15,9 @@ Vue.use(VueRouter)
 
 let routes = [
     { path: '/dashboard', component:  require('./components/dashboard.vue').default },
-    { path: '/users', component:  require('./components/users.vue').default }
+    { path: '/users', component:  require('./components/users.vue').default },
+    { path: '/Stock', component:  require('./components/Stock.vue').default },
+    { path: '/addStock', component:  require('./components/addStock.vue').default }
   ]
 
 const router = new VueRouter({

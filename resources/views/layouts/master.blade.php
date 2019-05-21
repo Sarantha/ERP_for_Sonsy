@@ -12,7 +12,7 @@
 
 </head>
 <body>
-<div id="app">
+<div class="wrapper" id="app">
     <nav class="navbar navbar-expand-lg navbar-light bg-navwhite border-bottom">
     <button class="navbar-toggler sideMenuToggler" type="button">
       <span class="navbar-toggler-icon"></span>
@@ -44,9 +44,8 @@
           </li>
           <!-- <div class="dropdown-divider bg-mattGray"></div> -->
           <li class="nav-item">
-          <router-link to="/dashboard" class="nav-link sideLink px-2"><i class="material-icons icon">dashboard</i><span class="text">Dashboard</span></router-link>
+            <router-link to="/dashboard" class="nav-link sideLink px-2"><i class="material-icons icon">dashboard</i><span class="text">Dashboard</span></router-link>
           </li>
-          
           <li class="nav-item">
             <router-link to="/users" class="nav-link sideLink px-2"><i class="material-icons icon">person</i><span class="text">Users</span></router-link>
           </li>
@@ -54,7 +53,13 @@
             <router-link to="/test1" class="nav-link sideLink px-2"><i class="material-icons icon">insert_chart</i><span class="text">chart</span></router-link>
           </li>
           <li class="nav-item">
+            <router-link to="/Stock" class="nav-link sideLink px-2"><i class="material-icons icon">stock</i><span class="text">Stock</span></router-link>
+          </li>
+          <li class="nav-item">
             <router-link to="/test2" class="nav-link sideLink px-2"><i class="material-icons icon">settings</i><span class="text">Settings</span></router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/test3" class="nav-link sideLink sideMenuToggler px-2"><i class="material-icons icon">view_list</i><span class="text">Resize</span></router-link>
           </li>
           <li class="nav-item">
             <router-link to="/test3" class="nav-link sideLink sideMenuToggler px-2"><i class="material-icons icon">view_list</i><span class="text">Resize</span></router-link>
