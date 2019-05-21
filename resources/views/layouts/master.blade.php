@@ -44,8 +44,9 @@
           </li>
           <!-- <div class="dropdown-divider bg-mattGray"></div> -->
           <li class="nav-item">
-            <router-link to="/dashboard" class="nav-link sideLink px-2"><i class="material-icons icon">dashboard</i><span class="text">Dashboard</span></router-link>
+          <router-link to="/dashboard" class="nav-link sideLink px-2"><i class="material-icons icon">dashboard</i><span class="text">Dashboard</span></router-link>
           </li>
+          
           <li class="nav-item">
             <router-link to="/users" class="nav-link sideLink px-2"><i class="material-icons icon">person</i><span class="text">Users</span></router-link>
           </li>
