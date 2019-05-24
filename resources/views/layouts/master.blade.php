@@ -8,6 +8,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/path/to/material-icons/iconfont/material-icons.css">
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
@@ -56,10 +57,10 @@
             <router-link to="/Stock" class="nav-link sideLink px-2"><i class="material-icons icon">stock</i><span class="text">Stock</span></router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/test2" class="nav-link sideLink px-2"><i class="material-icons icon">settings</i><span class="text">Settings</span></router-link>
+            <router-link to="/Invoice" class="nav-link sideLink px-2"><i class="material-icons icon">payment</i><span class="text">Invoice</span></router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/test3" class="nav-link sideLink sideMenuToggler px-2"><i class="material-icons icon">view_list</i><span class="text">Resize</span></router-link>
+            <router-link to="/test2" class="nav-link sideLink px-2"><i class="material-icons icon">settings</i><span class="text">Settings</span></router-link>
           </li>
           <li class="nav-item">
             <router-link to="/test3" class="nav-link sideLink sideMenuToggler px-2"><i class="material-icons icon">view_list</i><span class="text">Resize</span></router-link>
