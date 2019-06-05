@@ -6,14 +6,14 @@
           <div class="card">
             <div class="card-header">
               <div class="card-tools">
-                  <router-link to="/addStock"><button class="btn btn-success" id="btn-add" data-toggle="modal" data-target="#addNew">Add Item</button></router-link>
+                  <router-link to="/addStock"><button class="btn btn-success" id="btn-add">Add Item</button></router-link>
               </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body table-responsive no-padding">
               <table class="table table-hover">
                 <tbody><tr>
-                  <th>ItemNo</th>
+                  <th>ID</th>
                   <th>ItemName</th>
                   <th>UnitPrice</th>
                   <th>Discount</th>
@@ -22,23 +22,24 @@
                   <th>Quantity</th>
                   <th>SellingPrice</th>
                   <th>TotalBalance</th>
-                  <th>Active</th>
+                  <th>Availability</th>
                   <th>Modify</th>
                 </tr>
-                <tr>
-                  <td>183</td>
-                  <td>John Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-success">Approved</span></td>
-                  <td>Bacon </td>
-                  <td>183</td>
-                  <td>John Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-success">Approved</span></td>
-                  <td>Bacon </td>
+                <tr v-for="stock in stocks" :key="stock.ItemNo">
+                  <td>{{stock.id}}</td>
+                  <td>{{stock.ItemName}}</td>
+                  <td>{{stock.UnitPrice}}</td>
+                  <td>{{stock.Discount}}</td>
+                  <td>{{stock.SupplierId}}</td>
+                  <td>{{stock.InvoiceNo}}</td>
+                  <td>{{stock.Quantity}}</td>
+                  <td>{{stock.SellingPrice}}</td>
+                  <td>{{stock.TotalBalance}}</td>
+                  <td>{{stock.Active}}</td>
                   <td>
-                      <a href="#">Edit</a> /
-                      <a href="#" id="del">Delete</a>
+                      <!--<router-link to="/editStock">Edit</router-link>-->
+                      <a href="#" @click="editModal(stock)" data-toggle="modal" data-target="#editIt">Edit</a> <b>|</b>
+                      <a href="#" id="del" @click="deleteStock(stock.id)">Delete</a>
                   </td>
                 </tr>
               </tbody></table>
@@ -48,6 +49,92 @@
           <!-- /.box -->
         </div>
       </div>
+      <!-- Modal -->
+        <div class="modal fade" id="editIt" tabindex="-1" role="dialog" aria-labelledby="EditItTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="EditItTitle">Edit Item</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <form @submit.prevent="UpdateItem" id="editForm">
+                    <div class="form-row">
+                      <div class="form-group col-md-4">
+                          <label>Item Name</label>
+                          <input v-model="form.ItemName" type="text" name="ItemName"
+                              placeholder="Enter Item Name"
+                              class="form-control" :class="{ 'is-invalid': form.errors.has('ItemName') }">
+                          <has-error :form="form" field="ItemName"></has-error>
+                      </div>
+                      <div class="form-group col-md-4">
+                          <label>Quantity</label>
+                          <input v-model="form.Quantity" type="number" name="Quantity"
+                              placeholder="Enter Quantity"
+                              class="form-control" :class="{ 'is-invalid': form.errors.has('Quantity') }">
+                          <has-error :form="form" field="Quantity"></has-error>
+                      </div>
+                      <div class="form-group col-md-4">
+                          <label>UnitPrice</label>
+                          <input v-model="form.UnitPrice" type="number" name="UnitPrice"
+                              placeholder="Enter UnitPrice"
+                              class="form-control" :class="{ 'is-invalid': form.errors.has('UnitPrice') }">
+                          <has-error :form="form" field="UnitPrice"></has-error>
+                      </div>
+                      <div class="form-group col-md-3">
+                          <label>Discount</label>
+                          <input v-model="form.Discount" type="number" name="Discount"
+                              placeholder="Enter Discount"
+                              class="form-control" :class="{ 'is-invalid': form.errors.has('Discount') }">
+                          <has-error :form="form" field="Discount"></has-error>
+                      </div>
+                      <div class="form-group col-md-3">
+                          <label>SupplierId</label>
+                          <input v-model="form.SupplierId" type="text" name="SupplierId"
+                              placeholder="Enter SupplierId"
+                              class="form-control" :class="{ 'is-invalid': form.errors.has('SupplierId') }">
+                          <has-error :form="form" field="SupplierId"></has-error>
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label>InvoiceNo</label>
+                          <input v-model="form.InvoiceNo" type="text" name="InvoiceNo"
+                              placeholder="Enter InvoiceNo"
+                              class="form-control" :class="{ 'is-invalid': form.errors.has('InvoiceNo') }">
+                          <has-error :form="form" field="InvoiceNo"></has-error>
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label>SellingPrice</label>
+                          <input v-model="form.SellingPrice" type="number" name="SellingPrice"
+                              placeholder="Enter SellingPrice"
+                              class="form-control" :class="{ 'is-invalid': form.errors.has('SellingPrice') }">
+                          <has-error :form="form" field="SellingPrice"></has-error>
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label>TotalBalance</label>
+                          <input v-model="form.TotalBalance" type="number" name="TotalBalance"
+                              placeholder="Enter TotalBalance"
+                              class="form-control" :class="{ 'is-invalid': form.errors.has('TotalBalance') }">
+                          <has-error :form="form" field="TotalBalance"></has-error>
+                      </div>
+                      <div class="form-group col-md-12">
+                          <label>Item Availability</label>
+                          <input v-model="form.Active" type="text" name="Active"
+                              placeholder="Enter Active"
+                              class="form-control" :class="{ 'is-invalid': form.errors.has('Active') }">
+                          <has-error :form="form" field="Active"></has-error>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="Submit" class="btn btn-primary">Save changes</button>
+                  </div>
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
 </template>
 
@@ -55,7 +142,11 @@
     export default {
         data(){
             return{
+              stocks:{
+
+              },
                 form:new Form({
+                    id:'',
                     Discount:'',
                     ItemName:'',
                     UnitPrice:'',
@@ -69,18 +160,76 @@
             }
         },
         methods:{
+                UpdateItem(){
+                  //this.$Progress.start();
+                  //console.log("Editing data");
+                  this.form.put('api/stocks/'+this.form.id)
+                  .then(() => {
+                    $('#editIt').modal('hide');
+                    Swal.fire(
+                              'Updated!',
+                              'Item has been updated',
+                              'success'
+                            )
+                            //this.$Progress.finish();
+                            Fire.$emit('afterDelete');
+                  })
+                  .catch(() => {
+                   // this.$Progress.fail();
+                  });
+                },
+                editModal(stock){
+                  this.form.fill(stock);
+                },
+                deleteStock(id){
+                    //this.form.delete('api/stocks/'+id);
+                    Swal.fire({
+                      title: 'Are you sure?',
+                      text: "You won't be able to revert this!",
+                      type: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                      if (result.value) {
+                          this.form.delete('api/stocks/'+id).then(()=>{    
+                            Swal.fire(
+                              'Deleted!',
+                              'Your file has been deleted.',
+                              'success'
+                            )
+                            Fire.$emit('afterDelete');
+                          //}
+                        }).catch(()=>{
+                            Swal("Failed!","Something went wrong", "warning");
+                        });
+                      }
+                    })
+                },
+                loadStock(){
+                    axios.get("api/stocks").then(({ data }) => this.stocks = data.data);
+                },
                 addItem(){
                     this.form.post('api/stock')
                 }
         },
-        mounted() {
-            console.log('Component mounted.')
+        created() {
+            this.loadStock();
+            Fire.$on('afterDelete',()=>{
+                this.loadStock();
+            });
         }
     }
 </script>
 <style>
     #del{
         color: crimson;
+    }
+    #del:hover{
+      background-color: crimson;
+      color: beige;
+      transition: 5ms;
     }
     #btn-add{
         float: right;

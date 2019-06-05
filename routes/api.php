@@ -23,3 +23,4 @@ Route::apiResources(['invoice'=>'API\OrderController']);
 Route::apiResources(['invoiceget'=>'API\invoiceCntroller']);
 Route::apiResources(['outstanding'=>'API\outstandingController']);
 Route::apiResources(['customer'=>'API\customerController']);
+Route::apiResources(['stocks' => 'API\StockController']);

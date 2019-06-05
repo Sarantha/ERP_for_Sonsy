@@ -11,6 +11,15 @@ require('./edit');
 //importing vue router
 window.Vue = require('vue');
 import { Form, HasError, AlertError } from 'vform'
+import Swal from 'sweetalert2'
+window.Swal = Swal;
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
+window.Toast = Toast;
 window.Form = Form;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
@@ -31,6 +40,7 @@ const router = new VueRouter({
     mode:'history',
     routes
 })
+window.Fire = new Vue();
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
