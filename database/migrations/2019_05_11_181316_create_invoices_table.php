@@ -14,14 +14,10 @@ class CreateInvoicesTable extends Migration
     public function up()
     {
         Schema::create('invoices', function (Blueprint $table) {
-            $table->bigIncrements('InvoiceNo');
-            $table->date('Date');
+            $table->biginteger('InvoiceNo');
             $table->integer('CustomerID');
-            $table->double('Cash');
-            $table->biginteger('ChequeNo');
-            $table->date('ChequeDate');
-            $table->double('ChequeValue');
             $table->double('Outstanding');
+            $table->timestamps();
         });
     }
 

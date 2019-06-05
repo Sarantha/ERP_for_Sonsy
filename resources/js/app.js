@@ -10,6 +10,12 @@ require('./edit');
 
 //importing vue router
 window.Vue = require('vue');
+import { Form, HasError, AlertError } from 'vform'
+window.Form = Form;
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
+
+window.Fire = new Vue();
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
@@ -17,6 +23,7 @@ let routes = [
     { path: '/dashboard', component:  require('./components/dashboard.vue').default },
     { path: '/users', component:  require('./components/users.vue').default },
     { path: '/Stock', component:  require('./components/Stock.vue').default },
+    { path: '/addOrder', component:  require('./components/addorder.vue').default },
     { path: '/addStock', component:  require('./components/addStock.vue').default }
   ]
 
@@ -43,7 +50,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var app = new Vue({
+const app = new Vue({
     el: '#app',
-    router
+    router,
+    data:{
+      search: ''
+    },
+    methods:{
+      searchit(){
+        Fire.$emit('searching');
+      }
+    }
 });

@@ -27,12 +27,15 @@
           <a href="#" class="nav-link sideMenuToggler tog" style="margin-left:78px;"><span class="navbar-toggler-icon"></span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
+          <div class="input-group input-group-sm mt-1">
+            <input type="search" class="form-control form-control-navbar" @keyup="searchit" v-model="search" placeholder="Search" aria-label="Search">
+            <div class="input-group-append">
+              <button class="btn btn-navbar" @click="searchit">
+              <i class="material-icons icon">search</i>
+              </button>
+            </div>
+          </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-      </ul>
     </div>
   </nav>
 
@@ -57,8 +60,9 @@
             <router-link to="/Stock" class="nav-link sideLink px-2"><i class="material-icons icon">stock</i><span class="text">Stock</span></router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/Invoice" class="nav-link sideLink px-2"><i class="material-icons icon">payment</i><span class="text">Invoice</span></router-link>
+            <router-link to="/addOrder" class="nav-link sideLink px-2"><i class="material-icons icon">add_circle</i><span class="text">Add Order</span></router-link>
           </li>
+
           <li class="nav-item">
             <router-link to="/test2" class="nav-link sideLink px-2"><i class="material-icons icon">settings</i><span class="text">Settings</span></router-link>
           </li>

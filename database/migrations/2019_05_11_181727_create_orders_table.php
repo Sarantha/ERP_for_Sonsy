@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->biginteger('CustomerID');
             $table->enum('OrderStatuts', ['Pending', 'Accepted','Rejected','Issued']);
             $table->text('Reason');
+            $table->timestamps();
         });
     }
 

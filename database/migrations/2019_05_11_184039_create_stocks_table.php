@@ -15,15 +15,11 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->Increments('ItemNo');
-            $table->double('Discount');
             $table->string('ItemName');
             $table->double('UnitPrice');
-            $table->integer('SupplierId');
-            $table->biginteger('InvoiceNo');
             $table->integer('Quantity');
             $table->double('SellingPrice');
-            $table->double('TotalBalance');
-            $table->enum('Active', ['NotAvailable', 'Available']);
+            $table->timestamps();
         });
     }
 

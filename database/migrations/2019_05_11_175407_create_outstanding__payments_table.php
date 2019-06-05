@@ -14,13 +14,14 @@ class CreateOutstandingPaymentsTable extends Migration
     public function up()
     {
         Schema::create('outstanding__payments', function (Blueprint $table) {
-            $table->bigIncrements('PaymentNo');
-            $table->integer('Invoice');
-            $table->date('InvoiceDate');
-            $table->double('InvoiceValue');
-            $table->double('SettledAmount');
-            $table->double('Balance');
-            $table->integer('Age');
+            $table->bigIncrements('OrderNo');
+            $table->integer('InvoiceNo');
+            $table->date('InvoiceDate')->nullable();
+            $table->double('InvoiceValue')->default(0);
+            $table->double('SettledAmount')->default(0);
+            $table->double('Balance')->default(0);
+            $table->integer('Age')->default(0);
+            $table->timestamps();
         });
     }
 

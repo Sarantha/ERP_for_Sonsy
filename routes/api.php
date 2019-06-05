@@ -16,3 +16,10 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('findStock','API\OrderController@search');
+Route::apiResources(['stock'=>'API\OrderController']);
+Route::apiResources(['invoice'=>'API\OrderController']);
+Route::apiResources(['invoiceget'=>'API\invoiceCntroller']);
+Route::apiResources(['outstanding'=>'API\outstandingController']);
+Route::apiResources(['customer'=>'API\customerController']);
