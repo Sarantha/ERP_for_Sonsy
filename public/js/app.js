@@ -2156,10 +2156,20 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     AddCustomer: function AddCustomer() {
-      this.form.post('api/customer');
+      this.form.post('api/customer').then(function () {
+        Toast.fire({
+          type: 'success',
+          title: 'Registered successfully'
+        })["catch"](function () {});
+      });
     },
     AddSupplier: function AddSupplier() {
-      this.form2.post('api/supplier');
+      this.form2.post('api/supplier').then(function () {
+        Toast.fire({
+          type: 'success',
+          title: 'Registered successfully'
+        })["catch"](function () {});
+      });
     }
   }
 });

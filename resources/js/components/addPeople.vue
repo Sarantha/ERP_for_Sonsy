@@ -130,10 +130,28 @@ export default {
     },
     methods:{
         AddCustomer(){
-            this.form.post('api/customer');
+            this.form.post('api/customer')
+            .then(()=>{
+                    Toast.fire({
+                    type: 'success',
+                    title: 'Registered successfully'
+                    })
+                    .catch(()=>{
+                    
+                    })
+                })
         },
         AddSupplier(){
-            this.form2.post('api/supplier');
+            this.form2.post('api/supplier')
+            .then(()=>{
+                    Toast.fire({
+                    type: 'success',
+                    title: 'Registered successfully'
+                    })
+                    .catch(()=>{
+                    
+                    })
+                })
         }
     }
 }
