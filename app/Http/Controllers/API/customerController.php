@@ -14,7 +14,7 @@ class customerController extends Controller
      */
     public function index()
     {
-        return Customer::all();
+        return Customer::latest()->paginate(10);
     }
 
     /**

@@ -34,7 +34,8 @@ let routes = [
     { path: '/Stock', component:  require('./components/Stock.vue').default },
     { path: '/addOrder', component:  require('./components/addorder.vue').default },
     { path: '/addStock', component:  require('./components/addStock.vue').default },
-    { path: '/addPeople', component:  require('./components/addPeople.vue').default }
+    { path: '/addPeople', component:  require('./components/addPeople.vue').default },
+    { path: '/customers', component:  require('./components/customers.vue').default }
   ]
 
 const router = new VueRouter({
